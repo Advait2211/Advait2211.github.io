@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOBBIES | ADVAIT DESAI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--yellow);
+            border-bottom: var(--border-thick);
+            padding: var(--spacing-md) 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 3px solid var(--black);
+            background: var(--white);
+            box-shadow: 3px 3px 0 var(--black);
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--pink);
+            color: var(--white);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--black);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            border: 3px solid var(--black);
+            background: var(--white);
+            padding: var(--spacing-xs);
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 4px;
+            background: var(--black);
+        }
+
+        /* Hobbies Section */
+        .hobbies-section {
+            padding-top: 120px;
+            padding-bottom: var(--spacing-2xl);
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+        }
+
+        .page-header .highlight {
+            background: var(--blue);
+            padding: 0 12px;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-small);
+        }
+
+        .hobbies-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .hobby-item {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .hobby-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .hobby-item:nth-child(2) {
+            animation-delay: 0.2s;
+            grid-template-columns: 1fr 300px;
+        }
+
+        .hobby-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .hobby-item:nth-child(4) {
+            animation-delay: 0.4s;
+            grid-template-columns: 1fr 300px;
+        }
+
+        .hobby-item:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .hobby-item:nth-child(6) {
+            animation-delay: 0.6s;
+            grid-template-columns: 1fr 300px;
+        }
+
+        .hobby-item:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .hobby-image {
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            background: var(--pink);
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .hobby-item:nth-child(2) .hobby-image {
+            background: var(--blue);
+        }
+
+        .hobby-item:nth-child(3) .hobby-image {
+            background: var(--green);
+        }
+
+        .hobby-item:nth-child(4) .hobby-image {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .hobby-item:nth-child(5) .hobby-image {
+            background: var(--pink);
+        }
+
+        .hobby-item:nth-child(6) .hobby-image {
+            background: var(--blue);
+        }
+
+        .hobby-item:nth-child(7) .hobby-image {
+            background: var(--green);
+        }
+
+        .hobby-image:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-brutal-hover);
+        }
+
+        .hobby-content {
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            background: var(--white);
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .hobby-content:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-brutal-hover);
+        }
+
+        .hobby-content h3 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .hobby-content p {
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--yellow);
+                border-top: var(--border-thick);
+                padding: var(--spacing-lg);
+                gap: var(--spacing-sm);
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .hobby-item,
+            .hobby-item:nth-child(even) {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">ADVAIT DESAI</div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="hobbies.html" class="active">HOBBIES</a></li>
+                <li><a href="achievements.html">ACHIEVEMENTS</a></li>
+                <li><a href="experience.html">WORK EXP</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hobbies Section -->
+    <section class="hobbies-section">
+        <div class="page-header">
+            <h1>MY <span class="highlight">HOBBIES</span></h1>
+        </div>
+
+        <div class="hobbies-container">
+            <!-- Cycling -->
+            <div class="hobby-item">
+                <div class="hobby-image">CYCLING PHOTO</div>
+                <div class="hobby-content">
+                    <h3>🚴 CYCLING</h3>
+                    <p>Write about your cycling experiences here. Share your favorite routes, memorable rides, or what
+                        cycling means to you.</p>
+                </div>
+            </div>
+
+            <!-- Chess -->
+            <div class="hobby-item">
+                <div class="hobby-content">
+                    <h3>♟️ CHESS</h3>
+                    <p>Share your chess journey here. Talk about your favorite openings, memorable games, or how chess
+                        has influenced your problem-solving.</p>
+                </div>
+                <div class="hobby-image">CHESS PHOTO</div>
+            </div>
+
+            <!-- Reading -->
+            <div class="hobby-item">
+                <div class="hobby-image">READING PHOTO</div>
+                <div class="hobby-content">
+                    <h3>📚 READING</h3>
+                    <p>Describe your reading interests here. Share your favorite books, genres, or authors that shape
+                        your perspective.</p>
+                </div>
+            </div>
+
+            <!-- Swimming -->
+            <div class="hobby-item">
+                <div class="hobby-content">
+                    <h3>🏊 SWIMMING</h3>
+                    <p>Write about your swimming experiences here. Share what you love about being in the water and how
+                        it helps you stay focused.</p>
+                </div>
+                <div class="hobby-image">SWIMMING PHOTO</div>
+            </div>
+
+            <!-- Badminton -->
+            <div class="hobby-item">
+                <div class="hobby-image">BADMINTON PHOTO</div>
+                <div class="hobby-content">
+                    <h3>🏸 BADMINTON</h3>
+                    <p>Share your badminton passion here. Talk about your playing style, memorable matches, or what you
+                        enjoy most about the sport.</p>
+                </div>
+            </div>
+
+            <!-- Harmonium -->
+            <div class="hobby-item">
+                <div class="hobby-content">
+                    <h3>🎹 HARMONIUM</h3>
+                    <p>Describe your musical journey with the harmonium. Share what drew you to this instrument and how
+                        music enriches your life.</p>
+                </div>
+                <div class="hobby-image">HARMONIUM PHOTO</div>
+            </div>
+
+            <!-- Additional Hobby -->
+            <div class="hobby-item">
+                <div class="hobby-image">HOBBY PHOTO</div>
+                <div class="hobby-content">
+                    <h3>✨ YOUR NEXT HOBBY</h3>
+                    <p>This space is ready for you to add another hobby. Replace this text with your description and add
+                        a relevant image.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('nav')) {
+                document.getElementById('navLinks').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>

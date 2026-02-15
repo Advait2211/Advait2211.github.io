@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORK EXPERIENCE | ADVAIT DESAI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--yellow);
+            border-bottom: var(--border-thick);
+            padding: var(--spacing-md) 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 3px solid var(--black);
+            background: var(--white);
+            box-shadow: 3px 3px 0 var(--black);
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--pink);
+            color: var(--white);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--black);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            border: 3px solid var(--black);
+            background: var(--white);
+            padding: var(--spacing-xs);
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 4px;
+            background: var(--black);
+        }
+
+        /* Experience Section */
+        .experience-section {
+            padding-top: 120px;
+            padding-bottom: var(--spacing-2xl);
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+        }
+
+        .page-header .highlight {
+            background: var(--pink);
+            color: var(--white);
+            padding: 0 12px;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-small);
+        }
+
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            position: relative;
+        }
+
+        /* Timeline Line */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--black);
+            transform: translateX(-50%);
+        }
+
+        .experience-item {
+            display: grid;
+            grid-template-columns: 1fr 100px 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+            position: relative;
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .experience-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .experience-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .experience-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        /* Alternate sides */
+        .experience-item:nth-child(odd) .experience-content {
+            grid-column: 1;
+            text-align: right;
+        }
+
+        .experience-item:nth-child(odd) .experience-logo {
+            grid-column: 2;
+        }
+
+        .experience-item:nth-child(odd) .experience-details {
+            grid-column: 3;
+        }
+
+        .experience-item:nth-child(even) .experience-content {
+            grid-column: 3;
+            text-align: left;
+        }
+
+        .experience-item:nth-child(even) .experience-logo {
+            grid-column: 2;
+        }
+
+        .experience-item:nth-child(even) .experience-details {
+            grid-column: 1;
+            text-align: right;
+        }
+
+        .experience-logo {
+            width: 100px;
+            height: 100px;
+            background: var(--white);
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            transition: all 0.2s ease;
+            padding: 10px;
+        }
+
+        .experience-logo:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-brutal-hover);
+        }
+
+        .experience-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .experience-content {
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            background: var(--white);
+            padding: var(--spacing-xl);
+            transition: all 0.2s ease;
+        }
+
+        .experience-item:nth-child(1) .experience-content {
+            background: var(--blue);
+        }
+
+        .experience-item:nth-child(2) .experience-content {
+            background: var(--yellow);
+        }
+
+        .experience-item:nth-child(3) .experience-content {
+            background: var(--green);
+        }
+
+        .experience-content:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-brutal-hover);
+        }
+
+        .company-name {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: var(--spacing-xs);
+            text-transform: uppercase;
+        }
+
+        .role-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: var(--spacing-xs);
+            text-transform: uppercase;
+        }
+
+        .experience-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            background: var(--white);
+            padding: var(--spacing-lg);
+            transition: all 0.2s ease;
+        }
+
+        .experience-details:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-brutal-hover);
+        }
+
+        .date-range {
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-sm);
+            color: var(--pink);
+        }
+
+        .experience-description {
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        .role-transition {
+            display: inline-block;
+            background: var(--pink);
+            color: var(--white);
+            border: var(--border-medium);
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            margin-top: var(--spacing-xs);
+            text-transform: uppercase;
+            box-shadow: 3px 3px 0 var(--black);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--yellow);
+                border-top: var(--border-thick);
+                padding: var(--spacing-lg);
+                gap: var(--spacing-sm);
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .timeline-container::before {
+                left: 50px;
+            }
+
+            .experience-item {
+                grid-template-columns: 100px 1fr !important;
+                gap: var(--spacing-md);
+            }
+
+            .experience-item .experience-logo {
+                grid-column: 1 !important;
+                grid-row: 1;
+            }
+
+            .experience-item .experience-content {
+                grid-column: 2 !important;
+                grid-row: 1;
+                text-align: left !important;
+            }
+
+            .experience-item .experience-details {
+                grid-column: 2 !important;
+                grid-row: 2;
+                text-align: left !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">ADVAIT DESAI</div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="hobbies.html">HOBBIES</a></li>
+                <li><a href="achievements.html">ACHIEVEMENTS</a></li>
+                <li><a href="experience.html" class="active">WORK EXP</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <div class="page-header">
+            <h1>WORK <span class="highlight">EXPERIENCE</span></h1>
+        </div>
+
+        <div class="timeline-container">
+            <!-- BNY Internship -->
+            <div class="experience-item">
+                <div class="experience-content">
+                    <h3 class="company-name">BNY</h3>
+                    <div class="role-title">UPCOMING SUMMER INTERN</div>
+                </div>
+                <div class="experience-logo">
+                    <div style="font-size: 2.5rem;">🏦</div>
+                </div>
+                <div class="experience-details">
+                    <div class="date-range">SUMMER 2026</div>
+                    <p class="experience-description">
+                        Excited to join BNY as a Summer Intern. Looking forward to contributing to innovative projects
+                        and gaining valuable industry experience.
+                    </p>
+                </div>
+            </div>
+
+            <!-- We-Matter Role 2 -->
+            <div class="experience-item">
+                <div class="experience-content">
+                    <h3 class="company-name">WE-MATTER</h3>
+                    <div class="role-title">CURRENT ROLE TITLE</div>
+                    <span class="role-transition">↑ ROLE TRANSITION</span>
+                </div>
+                <div class="experience-logo">
+                    <img src="we_matter_logo_image.png" alt="We-Matter Logo">
+                </div>
+                <div class="experience-details">
+                    <div class="date-range">MONTH YEAR - PRESENT</div>
+                    <p class="experience-description">
+                        Describe your current role and responsibilities at We-Matter. Highlight key achievements,
+                        projects you've worked on, and the impact you've made.
+                    </p>
+                </div>
+            </div>
+
+            <!-- We-Matter Role 1 -->
+            <div class="experience-item">
+                <div class="experience-content">
+                    <h3 class="company-name">WE-MATTER</h3>
+                    <div class="role-title">PREVIOUS ROLE TITLE</div>
+                </div>
+                <div class="experience-logo">
+                    <img src="we_matter_logo_image.png" alt="We-Matter Logo">
+                </div>
+                <div class="experience-details">
+                    <div class="date-range">MONTH YEAR - MONTH YEAR</div>
+                    <p class="experience-description">
+                        Describe your previous role at We-Matter. Share what you learned, the projects you contributed
+                        to, and how this experience prepared you for your current role.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('nav')) {
+                document.getElementById('navLinks').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>

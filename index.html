@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advait Desai | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--yellow);
+            border-bottom: var(--border-thick);
+            padding: var(--spacing-md) 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 3px solid var(--black);
+            background: var(--white);
+            box-shadow: 3px 3px 0 var(--black);
+            transition: all 0.2s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--pink);
+            color: var(--white);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--black);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            border: 3px solid var(--black);
+            background: var(--white);
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 4px;
+            background: var(--black);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative Background */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: var(--blue);
+            z-index: 0;
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 500px 1fr;
+            gap: var(--spacing-2xl);
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .photo-container {
+            position: relative;
+            animation: popIn 0.8s ease forwards;
+        }
+
+        .photo-box {
+            border: var(--border-thick);
+            box-shadow: 12px 12px 0 var(--pink);
+            background: var(--white);
+            padding: var(--spacing-md);
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+        }
+
+        .photo-box:hover {
+            transform: rotate(0deg) translate(-4px, -4px);
+            box-shadow: 16px 16px 0 var(--pink);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: var(--white);
+            border: 3px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--black);
+            text-align: center;
+            padding: 0;
+            font-weight: 900;
+            text-transform: uppercase;
+            overflow: hidden;
+        }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .intro-content {
+            animation: slideIn 0.8s ease forwards 0.2s;
+            opacity: 0;
+        }
+
+        .intro-content h1 {
+            line-height: 1;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .highlight {
+            background: var(--yellow);
+            padding: 0 8px;
+            border: 3px solid var(--black);
+            box-shadow: 4px 4px 0 var(--black);
+            display: inline-block;
+            transform: rotate(-1deg);
+        }
+
+        .intro-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+            font-weight: 700;
+        }
+
+        .intro-link {
+            color: var(--pink);
+            border-bottom: 4px solid var(--pink);
+            font-weight: 900;
+            transition: all 0.2s ease;
+        }
+
+        .intro-link:hover {
+            background: var(--pink);
+            color: var(--white);
+            padding: 2px 6px;
+        }
+
+        /* Accent Boxes */
+        .accent-box {
+            position: absolute;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+        }
+
+        .box-1 {
+            width: 100px;
+            height: 100px;
+            background: var(--yellow);
+            top: 15%;
+            left: -50px;
+            transform: rotate(15deg);
+        }
+
+        .box-2 {
+            width: 80px;
+            height: 80px;
+            background: var(--green);
+            bottom: 20%;
+            right: 10%;
+            transform: rotate(-10deg);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--yellow);
+                border-top: var(--border-thick);
+                padding: var(--spacing-lg);
+                gap: var(--spacing-sm);
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .nav-links a {
+                text-align: center;
+                width: 100%;
+            }
+
+            .hero-section::before {
+                width: 60%;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-xl);
+            }
+
+            .photo-container {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .intro-content {
+                text-align: center;
+            }
+
+            .accent-box {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">ADVAIT DESAI</div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">HOME</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="hobbies.html">HOBBIES</a></li>
+                <li><a href="achievements.html">ACHIEVEMENTS</a></li>
+                <li><a href="experience.html">WORK EXP</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="accent-box box-1"></div>
+        <div class="accent-box box-2"></div>
+
+        <div class="hero-container">
+            <!-- Photo on Left -->
+            <div class="photo-container">
+                <div class="photo-box">
+                    <div class="photo-placeholder">
+                        <img src="images/me.png" alt="Advait Desai">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intro Text on Right -->
+            <div class="intro-content">
+                <h1>
+                    HI. THIS IS ME.<br>
+                    I ENJOY SOLVING<br>
+                    <span class="highlight">HARD</span> PROBLEMS.
+                </h1>
+
+                <p class="intro-text">
+                    currently creating problems in <strong>robotics</strong>, <strong>competitive
+                        programming</strong>,
+                    alongside my <a href="hobbies.html" class="intro-link">hobbies</a>.
+                </p>
+
+                <p class="intro-text">
+                    in the future i see myself solving <strong>larger problems</strong> (than myself, for the
+                    community),
+                    and making earth a <strong>better place</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        document.addEventListener('click', function (event) {
+            const navLinks = document.getElementById('navLinks');
+            if (!event.target.closest('nav')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>

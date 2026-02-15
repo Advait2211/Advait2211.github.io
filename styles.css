@@ -1,0 +1,385 @@
+/* ===================================
+   NEO-BRUTALISM PORTFOLIO - GLOBAL STYLES
+   =================================== */
+
+/* Import Bold Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@700;900&display=swap');
+
+/* ===================================
+   CSS VARIABLES - NEO-BRUTALIST DESIGN
+   =================================== */
+:root {
+  /* Bold Color Palette */
+  --black: #000000;
+  --white: #FFFFFF;
+  --yellow: #FFD700;
+  --pink: #FF006E;
+  --blue: #00F0FF;
+  --green: #00FF41;
+
+  /* Border & Shadow */
+  --border-thick: 5px solid var(--black);
+  --border-medium: 3px solid var(--black);
+  --shadow-brutal: 8px 8px 0 var(--black);
+  --shadow-brutal-hover: 12px 12px 0 var(--black);
+  --shadow-small: 4px 4px 0 var(--black);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ===================================
+   GLOBAL RESET & BASE STYLES
+   =================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===================================
+   TYPOGRAPHY
+   =================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: var(--spacing-md);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: var(--spacing-md);
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-md);
+  font-weight: 700;
+}
+
+a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--pink);
+}
+
+/* ===================================
+   BRUTALIST UTILITIES
+   =================================== */
+.brutal-box {
+  border: var(--border-thick);
+  box-shadow: var(--shadow-brutal);
+  background: var(--white);
+  transition: all 0.2s ease;
+}
+
+.brutal-box:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--shadow-brutal-hover);
+}
+
+.brutal-card {
+  border: var(--border-thick);
+  box-shadow: var(--shadow-brutal);
+  padding: var(--spacing-lg);
+  background: var(--white);
+  transition: all 0.2s ease;
+}
+
+.brutal-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--shadow-brutal-hover);
+}
+
+/* Color Blocks */
+.bg-yellow {
+  background: var(--yellow);
+}
+
+.bg-pink {
+  background: var(--pink);
+  color: var(--white);
+}
+
+.bg-blue {
+  background: var(--blue);
+}
+
+.bg-green {
+  background: var(--green);
+}
+
+.bg-black {
+  background: var(--black);
+  color: var(--white);
+}
+
+.bg-white {
+  background: var(--white);
+}
+
+/* Text Colors */
+.text-yellow {
+  color: var(--yellow);
+}
+
+.text-pink {
+  color: var(--pink);
+}
+
+.text-blue {
+  color: var(--blue);
+}
+
+.text-black {
+  color: var(--black);
+}
+
+/* ===================================
+   LAYOUT UTILITIES
+   =================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.section {
+  padding: var(--spacing-2xl) 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.section-padding {
+  padding: var(--spacing-2xl) 0;
+}
+
+/* ===================================
+   GRID SYSTEMS
+   =================================== */
+.grid {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* ===================================
+   BUTTONS
+   =================================== */
+.btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-weight: 900;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: var(--border-thick);
+  background: var(--white);
+  box-shadow: var(--shadow-small);
+  transition: all 0.2s ease;
+  display: inline-block;
+  letter-spacing: 0.05em;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--black);
+}
+
+.btn-yellow {
+  background: var(--yellow);
+}
+
+.btn-pink {
+  background: var(--pink);
+  color: var(--white);
+}
+
+.btn-blue {
+  background: var(--blue);
+}
+
+/* ===================================
+   ANIMATIONS
+   =================================== */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.6s ease forwards;
+}
+
+.pop-in {
+  animation: popIn 0.5s ease forwards;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+  }
+
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .section {
+    min-height: auto;
+    padding: var(--spacing-xl) 0;
+  }
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .brutal-box,
+  .brutal-card {
+    box-shadow: 4px 4px 0 var(--black);
+  }
+
+  .brutal-box:hover,
+  .brutal-card:hover {
+    box-shadow: 6px 6px 0 var(--black);
+  }
+}
+
+/* ===================================
+   UTILITY CLASSES
+   =================================== */
+.text-center {
+  text-align: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+
+.mb-xl {
+  margin-bottom: var(--spacing-xl);
+}
+
+.mt-sm {
+  margin-top: var(--spacing-sm);
+}
+
+.mt-md {
+  margin-top: var(--spacing-md);
+}
+
+.mt-lg {
+  margin-top: var(--spacing-lg);
+}
+
+.mt-xl {
+  margin-top: var(--spacing-xl);
+}
+
+/* Decorative Elements */
+.stripe-bg {
+  background: repeating-linear-gradient(45deg,
+      var(--white),
+      var(--white) 10px,
+      var(--black) 10px,
+      var(--black) 12px);
+}
+
+.dot-bg {
+  background-image: radial-gradient(var(--black) 2px, transparent 2px);
+  background-size: 20px 20px;
+}

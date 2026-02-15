@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements | Advait Desai</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--yellow);
+            border-bottom: var(--border-thick);
+            padding: var(--spacing-md) 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 3px solid var(--black);
+            background: var(--white);
+            box-shadow: 3px 3px 0 var(--black);
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--pink);
+            color: var(--white);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--black);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            border: 3px solid var(--black);
+            background: var(--white);
+            padding: var(--spacing-xs);
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 4px;
+            background: var(--black);
+        }
+
+        /* Achievements Section */
+        .achievements-section {
+            padding-top: 120px;
+            padding-bottom: var(--spacing-2xl);
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+        }
+
+        .page-header .highlight {
+            background: var(--green);
+            padding: 0 12px;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-small);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .achievement-card {
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal);
+            background: var(--white);
+            padding: var(--spacing-xl);
+            transition: all 0.2s ease;
+            opacity: 0;
+            animation: popIn 0.5s ease forwards;
+        }
+
+        .achievement-card:nth-child(1) {
+            animation-delay: 0.1s;
+            grid-column: 1 / -1;
+            background: var(--yellow);
+        }
+
+        .achievement-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .achievement-card:nth-child(3) {
+            animation-delay: 0.3s;
+            background: var(--blue);
+        }
+
+        .achievement-card:nth-child(4) {
+            animation-delay: 0.4s;
+            background: var(--pink);
+            color: var(--white);
+        }
+
+        .achievement-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .achievement-card:nth-child(6) {
+            animation-delay: 0.6s;
+            background: var(--green);
+        }
+
+        .achievement-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-brutal-hover);
+        }
+
+        .achievement-card.featured {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .achievement-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--black);
+            color: var(--white);
+            border: var(--border-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .achievement-card.featured .achievement-icon {
+            width: 120px;
+            height: 120px;
+            font-size: 4rem;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-xs);
+            text-transform: uppercase;
+        }
+
+        .achievement-date {
+            font-size: 0.95rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+            color: var(--pink);
+        }
+
+        .achievement-card.featured .achievement-date,
+        .achievement-card:nth-child(4) .achievement-date {
+            color: var(--black);
+        }
+
+        .achievement-card p {
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--yellow);
+                border-top: var(--border-thick);
+                padding: var(--spacing-lg);
+                gap: var(--spacing-sm);
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-card.featured {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .achievement-card.featured .achievement-icon {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">ADVAIT DESAI</div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="hobbies.html">HOBBIES</a></li>
+                <li><a href="achievements.html" class="active">ACHIEVEMENTS</a></li>
+                <li><a href="experience.html">WORK EXP</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Achievements Section -->
+    <section class="achievements-section">
+        <div class="page-header">
+            <h1>MY <span class="highlight">ACHIEVEMENTS</span></h1>
+        </div>
+
+        <div class="achievements-grid">
+            <!-- Featured Achievement -->
+            <div class="achievement-card featured">
+                <div class="achievement-icon">🏆</div>
+                <div>
+                    <h3>ICPC Regionalist</h3>
+                    <span class="achievement-date">DEC 2025 - JAN 2026</span>
+                    <p>Completed 2 bucket list tasks in one. Represented VJTI in a national level competition, and
+                        travelled span India to complete it.</p>
+                </div>
+            </div>
+
+            <!-- Achievement 2 -->
+            <div class="achievement-card">
+                <div class="achievement-icon">🥇</div>
+                <h3>ACHIEVEMENT 2</h3>
+                <span class="achievement-date">MONTH YEAR</span>
+                <p>Describe your achievement here. Share the context, what you did, and the results.</p>
+            </div>
+
+            <!-- Achievement 3 -->
+            <div class="achievement-card">
+                <div class="achievement-icon">⭐</div>
+                <h3>ACHIEVEMENT 3</h3>
+                <span class="achievement-date">MONTH YEAR</span>
+                <p>Describe your achievement here. Share the context, what you did, and the results.</p>
+            </div>
+
+            <!-- Achievement 4 -->
+            <div class="achievement-card">
+                <div class="achievement-icon">🎯</div>
+                <h3>ACHIEVEMENT 4</h3>
+                <span class="achievement-date">MONTH YEAR</span>
+                <p>Describe your achievement here. Share the context, what you did, and the results.</p>
+            </div>
+
+            <!-- Achievement 5 -->
+            <div class="achievement-card">
+                <div class="achievement-icon">🚀</div>
+                <h3>ACHIEVEMENT 5</h3>
+                <span class="achievement-date">MONTH YEAR</span>
+                <p>Describe your achievement here. Share the context, what you did, and the results.</p>
+            </div>
+
+            <!-- Achievement 6 -->
+            <div class="achievement-card">
+                <div class="achievement-icon">💡</div>
+                <h3>ACHIEVEMENT 6</h3>
+                <span class="achievement-date">MONTH YEAR</span>
+                <p>Describe your achievement here. Share the context, what you did, and the results.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('nav')) {
+                document.getElementById('navLinks').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
